@@ -3,7 +3,7 @@ package uva10000;
 import java.util.ArrayDeque;
 import java.util.Scanner;
 
-public class Main {
+class Main {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		int n = scanner.nextInt();
