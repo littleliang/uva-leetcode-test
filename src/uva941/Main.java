@@ -7,7 +7,7 @@ class Main {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		int s = Integer.parseInt(scanner.nextLine());
+		int s = scanner.nextInt();
 		String input;
 		long index;
 		char[] temp;
@@ -19,8 +19,9 @@ class Main {
 			factorial[i] = (long) i * factorial[i - 1];
 		}
 		while(s > 0){
+			scanner.nextLine();
 			input = scanner.nextLine();
-			index = Long.parseLong(scanner.nextLine());
+			index = scanner.nextLong();
 			temp = input.toCharArray();
 			Arrays.sort(temp);
 			for(int i = input.length() - 1; i >= 0; i--){
