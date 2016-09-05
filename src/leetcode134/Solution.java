@@ -7,8 +7,8 @@ public class Solution {
     	int sum = gas[start] - cost[start];
     	while(start > end){
     		if(sum >= 0){
-    			end++;
     			sum += gas[end] - cost[end];
+    			end++;
     		}
     		else{
     			start--;
