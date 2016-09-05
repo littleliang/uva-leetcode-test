@@ -14,7 +14,6 @@ class TreeNode {
 }
 
 public class Solution {
-	// 2, 1
 	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 		if (root == null || p == null || q == null)
 			return null;
