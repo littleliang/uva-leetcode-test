@@ -32,7 +32,6 @@ public class Solution {
 			Iterator<Character> it = set.iterator();
 			while (it.hasNext()) {
 				Deque<Integer> list = lists.get(it.next());
-				int size = list.size();
 				if (list.peekFirst() < start) {
 					start = Math.max(start, list.peekLast());
 					exists = true;
