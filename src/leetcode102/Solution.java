@@ -15,7 +15,7 @@ class TreeNode {
 	}
 }
 public class Solution {
-	public List<List<Integer>> levelOrderBottom(TreeNode root) {
+	public List<List<Integer>> levelOrder(TreeNode root) {
 
 		List<List<Integer>> list = new LinkedList<>();
 		if (root == null) {
