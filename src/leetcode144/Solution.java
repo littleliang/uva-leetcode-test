@@ -3,8 +3,6 @@ package leetcode144;
 import java.util.ArrayList;
 import java.util.List;
 
-import leetcode94.TreeNode;
-
 class TreeNode {
 	int val;
 	TreeNode left;
