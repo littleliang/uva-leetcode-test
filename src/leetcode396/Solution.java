@@ -1,4 +1,4 @@
-package leetcode394;
+package leetcode396;
 
 public class Solution {
     public int maxRotateFunction(int[] A) {
