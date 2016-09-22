@@ -1,4 +1,4 @@
-package leetcode153;
+package leetcode154;
 
 public class Solution {
 	public int findMin(int[] num) {
@@ -6,13 +6,13 @@ public class Solution {
 			return 0;
 
 		int low = 0, high = num.length - 1;
-		while (low < high && num[low] > num[high]) {
+		while (low < high && num[low] >= num[high]) {
 			int mid = low + (high - low) / 2;
 			if(num[mid] > num[low]){
 				low = mid + 1;
 			}
 			else if(num[mid] == num[low]){
-				return num[high];
+				low++;
 			}
 			else{
 				high = mid;
