@@ -1,21 +1,36 @@
 package leetcode385;
 
+import java.util.ArrayList;
 import java.util.List;
 
-interface NestedInteger {
-  public NestedInteger();
+class NestedInteger {
+  public NestedInteger() {
 
-  public NestedInteger(int value);
+  }
 
-  public boolean isInteger();
+  public NestedInteger(int value) {
 
-  public Integer getInteger();
+  }
 
-  public void setInteger(int value);
+  public boolean isInteger() {
+    return true;
+  }
 
-  public void add(NestedInteger ni);
+  public Integer getInteger() {
+    return 0;
+  }
 
-  public List<NestedInteger> getList();
+  public void setInteger(int value) {
+
+  }
+
+  public void add(NestedInteger ni) {
+
+  }
+
+  public List<NestedInteger> getList() {
+    return new ArrayList<>();
+  }
 }
 
 
