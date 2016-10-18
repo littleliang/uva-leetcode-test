@@ -9,20 +9,23 @@ public class Solution {
       return Math.max(nums[0], nums[1]);
     }
 
-    int n1 = Math.min(nums[0], Math.min(nums[1], nums[2])),
-        n2 = Math.max(nums[0], Math.min(nums[1], nums[2])),
-        n3 = Math.max(nums[0], Math.max(nums[1], nums[2]));
-    for (int i = 3; i < n; i++) {
+    long n1 = Long.MIN_VALUE, n2 = Long.MIN_VALUE, n3 = Long.MIN_VALUE;
+    for (int i = 0; i < n; i++) {
       if (nums[i] > n3) {
         n1 = n2;
         n2 = n3;
-        n3 = nums[i];
-      } else if (nums[i] >= n2) {
-        n2 = nums[i];
-      } else if (nums[i] > n1) {
-        n1 = nums[i];
+        n3 = (long) nums[i];
+      } else if (nums[i] > n2 && nums[i] < n3) {
+        n1 = n2;
+        n2 = (long) nums[i];
+      } else if (nums[i] > n1 && nums[i] < n2) {
+        n1 = (long) nums[i];
       }
     }
-    return n1;
+    if (n1 == Long.MIN_VALUE) {
+      return (int) n3;
+    } else {
+      return (int) n1;
+    }
   }
 }
