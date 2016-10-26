@@ -1,57 +1,37 @@
 package leetcode224;
 
-class ListNode {
-	int val;
-	ListNode next;
-
-	ListNode(int x) {
-		val = x;
-	}
-}
+import java.util.Stack;
 
 public class Solution {
-	public boolean isPalindrome(ListNode head) {
-		if (head == null || head.next == null)
-			return true;
-
-		ListNode middle = partition(head);
-		middle = reverse(middle);
-
-		while (head != null && middle != null) {
-			if (head.val != middle.val)
-				return false;
-			head = head.next;
-			middle = middle.next;
-		}
-		return true;
-	}
-
-	private ListNode partition(ListNode head) {
-		ListNode p = head;
-		while (p.next != null && p.next.next != null) {
-			p = p.next.next;
-			head = head.next;
-		}
-
-		p = head.next;
-		head.next = null;
-		return p;
-	}
-
-	private ListNode reverse(ListNode head) {
-		if (head == null || head.next == null)
-			return head;
-		ListNode pre = head;
-		ListNode cur = head.next;
-		pre.next = null;
-		ListNode nxt = null;
-
-		while (cur != null) {
-			nxt = cur.next;
-			cur.next = pre;
-			pre = cur;
-			cur = nxt;
-		}
-		return pre;
-	}
+  public int calculate(String s) {
+    Stack<Integer> stack = new Stack<>();
+    int result = 0;
+    int number = 0;
+    int sign = 1;
+    for (char c : s.toCharArray()) {
+      if (Character.isDigit(c)) {
+        number = number * 10 + c - '0';
+      } else if (c == '+') {
+        result += sign * number;
+        number = 0;
+        sign = 1;
+      } else if (c == '-') {
+        result += sign * number;
+        number = 0;
+        sign = -1;
+      } else if (c == '(') {
+        stack.push(result);
+        stack.push(sign);
+        result = 0;
+        sign = 1;
+      } else if (c == ')') {
+        result += sign * number;
+        result *= stack.pop();
+        result += stack.pop();
+        number = 0;
+      }
+    }
+    result += sign * number;
+    return result;
+  }
 }
