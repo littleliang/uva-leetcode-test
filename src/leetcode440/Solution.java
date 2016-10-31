@@ -18,8 +18,8 @@ public class Solution {
           count = countInSubtree + count - 1;
         } else {
           for (int j = 9; j >= 0; j--) {
-            int nextVal = Integer.parseInt("" + current + j);
-            if (nextVal <= n) {
+            if (Long.parseLong("" + current + j) <= (long) n) {
+              int nextVal = Integer.parseInt("" + current + j);
               stack.push(nextVal);
             }
           }
