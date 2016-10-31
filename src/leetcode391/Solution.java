@@ -1,75 +1,67 @@
 package leetcode391;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.HashMap;
 
 public class Solution {
+  class Point {
+    int x;
+    int y;
+    int index;
+
+    Point(int x, int y, int index) {
+      this.x = x;
+      this.y = y;
+      this.index = index;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (o instanceof Point) {
+        Point b = (Point) o;
+        return this.x == b.x && this.y == b.y;
+      }
+      return false;
+    }
+
+    @Override
+    public int hashCode() {
+      return (new Integer(x).hashCode() + new Integer(y).hashCode());
+    }
+  }
+
   public boolean isRectangleCover(int[][] rectangles) {
-    if (rectangles == null || rectangles.length == 0) {
-      return false;
-    }
-    List<int[]> list = new ArrayList<>();
-    for (int[] rec : rectangles) {
-      list.add(rec);
-    }
-    Collections.sort(list, new Comparator<int[]>() {
-      @Override
-      public int compare(int[] o1, int[] o2) {
-        return o1[0] - o2[0];
-      }
-    });
-    for (int i = 1; i < list.size(); i++) {
-      int[] pre = list.get(i - 1);
-      int[] cur = list.get(i);
-      if (cur[0] < pre[2]
-          && ((cur[1] < pre[3] && cur[1] > pre[1]) || (cur[3] < pre[3] && cur[3] > pre[1]))) { // overlap
-        return false;
-      }
-    }
-    Collections.sort(list, new Comparator<int[]>() {
-      @Override
-      public int compare(int[] o1, int[] o2) {
-        return o1[1] - o2[1];
-      }
-    });
-    long area = 0;
-    int[] leftPoint = {Integer.MAX_VALUE, Integer.MAX_VALUE};
-    int[] bottomPoint = {Integer.MAX_VALUE, Integer.MAX_VALUE};
-    int[] rightPoint = {Integer.MIN_VALUE, Integer.MIN_VALUE};
-    int[] upPoint = {Integer.MIN_VALUE, Integer.MIN_VALUE};
-
-    int[] pre = new int[4];
-    for (int i = 0; i < list.size(); i++) {
-      int[] cur = list.get(i);
-      if (i > 0 && cur[1] < pre[3]
-          && ((cur[0] < pre[2] && cur[0] > pre[0]) || (cur[2] < pre[2] && cur[2] > pre[0]))) { // overlap
-        return false;
-      }
-      int[] rec = cur;
-      if (rec[0] < leftPoint[0] || (rec[0] == leftPoint[0] && rec[1] < leftPoint[1])) {
-        leftPoint = new int[] {rec[0], rec[1]};
-      }
-      if (rec[1] < bottomPoint[1] || (rec[1] == bottomPoint[1] && rec[0] < bottomPoint[0])) {
-        bottomPoint = new int[] {rec[0], rec[1]};
-      }
-      if (rec[2] > rightPoint[0] || (rec[2] == rightPoint[0] && rec[3] > rightPoint[1])) {
-
-        rightPoint = new int[] {rec[2], rec[3]};
-      }
-      if (rec[3] > upPoint[1] || (rec[3] == upPoint[1] && rec[2] > upPoint[0])) {
-        upPoint = new int[] {rec[2], rec[3]};
-      }
-      area += (rec[3] - rec[1]) * (rec[2] - rec[0]);
-      pre = cur;
+    if (rectangles.length <= 1) {
+      return true;
     }
 
-    if (leftPoint[0] != bottomPoint[0] || leftPoint[1] != bottomPoint[1]
-        || rightPoint[0] != upPoint[0] || rightPoint[1] != upPoint[1]) {
-      return false;
-    }
+    int sum = 0;
+    int minX = Integer.MAX_VALUE;
+    int minY = Integer.MAX_VALUE;
+    int maxX = Integer.MIN_VALUE;
+    int maxY = Integer.MIN_VALUE;
+    HashMap<Point, Integer> hm = new HashMap<>();
+    for (int[] rect : rectangles) {
+      Point p1 = new Point(rect[0], rect[1], 1);
+      Point p2 = new Point(rect[2], rect[3], 2);
+      Point p3 = new Point(rect[0], rect[3], 3);
+      Point p4 = new Point(rect[2], rect[1], 4);
+      sum += (rect[2] - rect[0]) * (rect[3] - rect[1]);
 
-    return area == (long) (rightPoint[1] - leftPoint[1]) * (long) (rightPoint[0] - leftPoint[0]);
+      minX = Math.min(minX, rect[0]);
+      minY = Math.min(minY, rect[1]);
+
+      maxX = Math.max(maxX, rect[2]);
+      maxY = Math.max(maxY, rect[3]);
+
+      Point[] points = {p1, p2, p3, p4};
+      for (Point p : points) {
+        if (hm.containsKey(p) && hm.get(p) != p.index) {
+          hm.remove(p);
+        } else {
+          hm.put(p, p.index);
+        }
+      }
+    }
+    return (hm.size() == 4) && (sum == (maxX - minX) * (maxY - minY));
   }
 }
