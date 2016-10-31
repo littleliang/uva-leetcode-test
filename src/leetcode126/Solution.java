@@ -29,7 +29,6 @@ public class Solution {
     return myResultList;
   }
 
-  // find the solution
   public void fillLookupTable() {
     lookup.put(mEndWord, 0);
     mWordList.remove(mEndWord);
