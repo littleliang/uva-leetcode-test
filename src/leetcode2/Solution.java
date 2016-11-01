@@ -30,7 +30,7 @@ public class Solution {
       l1 = l1 == null ? null : l1.next;
       l2 = l2 == null ? null : l2.next;
     }
-    if (flag != 0) // 如果还有进位，添加节点存入其中
+    if (flag != 0)
     {
       ListNode lnext = new ListNode(0);
       lnext.val = flag;
