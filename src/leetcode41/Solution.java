@@ -1,7 +1,6 @@
 package leetcode41;
 
 public class Solution {
-
   public int firstMissingPositive(int[] A) {
     for (int i = 0; i < A.length; i++) {
       while (A[i] != i + 1) {
@@ -11,7 +10,6 @@ public class Solution {
         A[i] = A[A[i] - 1];
         A[temp - 1] = temp;
       }
-
     }
     for (int i = 0; i < A.length; i++) {
       if (A[i] != i + 1)
