@@ -6,12 +6,10 @@ import java.util.List;
 class Interval {
   int start;
   int end;
-
   Interval() {
     start = 0;
     end = 0;
   }
-
   Interval(int s, int e) {
     start = s;
     end = e;
@@ -26,7 +24,6 @@ public class Solution {
       ret.add(newInterval);
       return ret;
     }
-
     int i = 0;
     while (i < intervals.size()) {
       if (newInterval.end < intervals.get(i).start) {
@@ -36,8 +33,10 @@ public class Solution {
           i++;
         }
         return ret;
-      } else if (newInterval.start > intervals.get(i).end)
+      } 
+      else if (newInterval.start > intervals.get(i).end) {
         ret.add(intervals.get(i));
+      }
       else {
         newInterval.start = Math.min(newInterval.start, intervals.get(i).start);
         newInterval.end = Math.max(newInterval.end, intervals.get(i).end);
