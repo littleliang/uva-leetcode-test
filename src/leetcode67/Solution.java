@@ -1,7 +1,7 @@
 package leetcode67;
 
 public class Solution {
-  public static String addBinary(String a, String b) {
+  public String addBinary(String a, String b) {
     if (a.equals(""))
       return b;
     if (b.equals(""))
@@ -19,8 +19,9 @@ public class Solution {
       } else if (s == 3) {
         c = 1;
         s = 1;
-      } else
+      } else {
         c = 0;
+      }
       arr[t] = (char) (s + '0');
     }
     while (al >= 0) {
