@@ -30,7 +30,6 @@ public class Solution {
         return;
       }
       int address = Integer.valueOf(s.substring(start, length));
-
       if (address <= 255) {
         StringBuilder stringBuilder = new StringBuilder();
         for (Integer integer : path) {
@@ -56,5 +55,4 @@ public class Solution {
       }
     }
   }
-
 }
