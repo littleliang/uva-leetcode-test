@@ -3,8 +3,8 @@ package leetcode88;
 public class Solution {
   public void merge(int[] nums1, int m, int[] nums2, int n) {
     int count = m + n - 1;
-    m--;
     n--;
+    m--;
     while (n >= 0) {
       if (m == -1) {
         nums1[count] = nums2[n];
