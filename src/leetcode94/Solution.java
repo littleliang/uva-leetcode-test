@@ -34,3 +34,28 @@ public class Solution {
   }
 
 }
+
+/*
+public class Solution {
+  public List<Integer> inorderTraversal(TreeNode root) {
+    List<Integer> list = new ArrayList<Integer>();
+    if (root == null)
+      return list;
+    else {
+      Stack<TreeNode> stack = new Stack<TreeNode>();
+      TreeNode tmp = root;
+      while (!(stack.empty() && tmp == null)) {
+        while (tmp != null) {
+          stack.push(tmp);
+          tmp = tmp.left;
+        }
+        TreeNode tmp2 = stack.pop();
+        list.add(tmp2.val);
+        if (tmp2.right != null)
+          tmp = tmp2.right;
+      }
+    }
+    return list;
+  }
+}
+*/
