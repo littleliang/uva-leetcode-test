@@ -7,7 +7,7 @@ public class Solution {
     }
     int n = s.length();
     int m = t.length();
-    int[][] dp = new int[2][n + 1];
+    int[][] dp = new int[2][n];
     dp[0][0] = (t.charAt(0) == s.charAt(0)) ? 1 : 0;
     for (int i = 1; i < n; i++) {
       dp[0][i] = (t.charAt(0) == s.charAt(i)) ? dp[0][i - 1] + 1 : dp[0][i - 1];
