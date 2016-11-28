@@ -1,5 +1,7 @@
 package leetcode117;
 
+import java.util.ArrayDeque;
+
 class TreeLinkNode {
   int val;
   TreeLinkNode left, right, next;
@@ -12,47 +14,26 @@ class TreeLinkNode {
 
 public class Solution {
   public void connect(TreeLinkNode root) {
-    if (root == null)
+    if (root == null) {
       return;
-
-    TreeLinkNode parent = root;
-
-    while (parent != null) {
-
-      TreeLinkNode next = null;
-
-      while (parent != null) {
-        if (next == null)
-          next = getNextParentNode(parent);
-        TreeLinkNode newParent = connectWithNonNullNode(parent, parent.left);
-        parent =
-            parent == newParent ? connectWithNonNullNode(parent.next, parent.right) : newParent;
-      }
-
-      parent = next;
     }
-
-  }
-
-  private TreeLinkNode getNextParentNode(TreeLinkNode cParent) {
-    return cParent.left != null ? cParent.left : cParent.right;
-  }
-
-  private TreeLinkNode connectWithNonNullNode(TreeLinkNode parent, TreeLinkNode node) {
-
-    while (node != null && parent != null) {
-      if (parent.left != null && parent.left != node) {
-        node.next = parent.left;
-        break;
+    ArrayDeque<TreeLinkNode> queue = new ArrayDeque<>();
+    queue.addLast(root);
+    int count = 1;
+    while (!queue.isEmpty()) {
+      TreeLinkNode temp = queue.pollFirst();
+      if (temp.left != null)
+        queue.addLast(temp.left);
+      if (temp.right != null)
+        queue.addLast(temp.right);
+      count--;
+      if (count == 0) {
+        temp.next = null;
+        count = queue.size();
+      } else {
+        temp.next = queue.peekFirst();
       }
-      if (parent.right != null && parent.right != node) {
-        node.next = parent.right;
-        break;
-      }
-      parent = parent.next;
     }
-
-    return parent;
+    return;
   }
-
 }
