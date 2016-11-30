@@ -21,15 +21,11 @@ public class Solution {
     int colLen = board[0].length;
     if (colLen <= 0)
       return;
-
-
     int[][] visited = new int[rowLen][colLen];
     Queue<Node> queue = new LinkedList<>();
-
     for (int row = 0; row < rowLen; row++)
       for (int col = 0; col < colLen; col++)
         visited[row][col] = 0;
-
     for (int row = 0; row < rowLen; row++) {
       if (board[row][0] == 'O')
         queue.offer(new Node(row, 0));
@@ -48,9 +44,7 @@ public class Solution {
       int colcol = top.col;
       if (visited[rowrow][colcol] == 1)
         continue;
-
       visited[rowrow][colcol] = 1;
-
       if (rowrow + 1 < rowLen && board[rowrow + 1][colcol] == 'O'
           && visited[rowrow + 1][colcol] == 0)
         queue.offer(new Node(rowrow + 1, colcol));
