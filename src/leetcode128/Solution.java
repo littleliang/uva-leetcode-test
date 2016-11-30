@@ -12,16 +12,13 @@ public class Solution {
     id = new int[nums.length];
     sz = new int[nums.length];
     map = new HashMap<>();
-
     for (int i = 0; i < nums.length; i++) {
       insert(nums[i], i);
     }
-
     int res = 0;
     for (int i = 0; i < nums.length; i++) {
       res = Math.max(res, sz[i]);
     }
-
     return res;
   }
 
