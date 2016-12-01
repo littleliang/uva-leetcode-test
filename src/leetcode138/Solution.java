@@ -15,11 +15,9 @@ public class Solution {
     RandomListNode iter = head, next;
     while (iter != null) {
       next = iter.next;
-
       RandomListNode copy = new RandomListNode(iter.label);
       iter.next = copy;
       copy.next = next;
-
       iter = next;
     }
     iter = head;
@@ -41,7 +39,6 @@ public class Solution {
 
       iter = next;
     }
-
     return pseudoHead.next;
   }
 }
