@@ -20,7 +20,6 @@ public class Solution {
       return res;
     }
     int n = s.length();
-
     for (String w : dict) {
       if (!s.startsWith(w)) {
         continue;
@@ -36,7 +35,6 @@ public class Solution {
         }
       }
     }
-
     memo.put(s, res);
     return res;
   }
