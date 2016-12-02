@@ -22,7 +22,6 @@ public class LRUCache {
     Node prev = map.get(key);
     Node curr = prev.next;
     moveToTail(curr);
-
     return curr.val;
   }
 
@@ -49,10 +48,8 @@ public class LRUCache {
   public void moveToTail(Node curr) {
     if (curr == tail)
       return;
-
     Node prev = map.get(curr.key);
     Node post = curr.next;
-
     tail.next = curr;
     map.put(curr.key, tail);
     prev.next = post;
