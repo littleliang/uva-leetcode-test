@@ -14,12 +14,9 @@ public class Solution {
   public ListNode sortList(ListNode head) {
     if (head == null || head.next == null)
       return head;
-
     ListNode mid = findMid(head);
-
     ListNode secList = mid.next;
     mid.next = null;
-
     return mergeList(sortList(head), sortList(secList));
   }
 
@@ -33,11 +30,9 @@ public class Solution {
     return slow;
   }
 
-  public ListNode mergeList(ListNode fst, ListNode sec) {// 合并list
-
+  public ListNode mergeList(ListNode fst, ListNode sec) {
     ListNode newHead = new ListNode(0);
     ListNode tmpHead = newHead;
-
     while (fst != null && sec != null) {
       if (fst.val <= sec.val) {
         tmpHead.next = fst;
