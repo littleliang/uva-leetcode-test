@@ -3,7 +3,6 @@ package leetcode150;
 import java.util.Stack;
 
 public class Solution {
-
   public int evalRPN(String[] tokens) {
     if (tokens == null || tokens.length < 1) {
       throw new IllegalArgumentException();
@@ -35,7 +34,6 @@ public class Solution {
         stack.push(Integer.parseInt(token));
       }
     }
-
     return stack.pop();
   }
 }
