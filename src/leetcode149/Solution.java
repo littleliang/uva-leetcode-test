@@ -25,7 +25,6 @@ public class Solution {
       return 0;
     if (points.length <= 2)
       return points.length;
-
     Map<Integer, Map<Integer, Integer>> map = new HashMap<Integer, Map<Integer, Integer>>();
     int result = 0;
     for (int i = 0; i < points.length; i++) {
@@ -43,7 +42,6 @@ public class Solution {
           x /= gcd;
           y /= gcd;
         }
-
         if (map.containsKey(x)) {
           if (map.get(x).containsKey(y)) {
             map.get(x).put(y, map.get(x).get(y) + 1);
@@ -60,16 +58,12 @@ public class Solution {
       result = Math.max(result, max + overlap + 1);
     }
     return result;
-
-
   }
 
   private int generateGCD(int a, int b) {
-
     if (b == 0)
       return a;
     else
       return generateGCD(b, a % b);
-
   }
 }
