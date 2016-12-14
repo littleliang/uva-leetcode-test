@@ -13,16 +13,13 @@ public class Solution {
     if (s == null || s.length() < 11)
       return res;
     int hash = 0;
-
     Map<Character, Integer> map = new HashMap<Character, Integer>();
     map.put('A', 0);
     map.put('C', 1);
     map.put('G', 2);
     map.put('T', 3);
-
     Set<Integer> set = new HashSet<Integer>();
     Set<Integer> unique = new HashSet<Integer>();
-
     for (int i = 0; i < s.length(); i++) {
       char c = s.charAt(i);
       if (i < 9) {
