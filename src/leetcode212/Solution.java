@@ -24,7 +24,6 @@ public class Solution {
       res.add(p.word);
       p.word = null;
     }
-
     board[i][j] = '#';
     if (i > 0)
       dfs(board, i - 1, j, p, res);
