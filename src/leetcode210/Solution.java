@@ -10,7 +10,6 @@ public class Solution {
     for (int i = 0; i < prerequisites.length; i++) {
       map[prerequisites[i][0]]++;
     }
-
     Queue<Integer> que = new LinkedList<Integer>();
     int index = 0;
     for (int i = 0; i < map.length; i++) {
@@ -19,9 +18,7 @@ public class Solution {
         res[index++] = i;
       }
     }
-
     int count = que.size();
-    
     while (!que.isEmpty()) {
       int k = que.remove();
       for (int i = 0; i < prerequisites.length; i++) {
