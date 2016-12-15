@@ -6,7 +6,6 @@ public class Solution {
     int n = str.length;
     if (n <= 1)
       return s;
-
     int[] next = new int[n >> 1];
     next[0] = 0;
     int j = 0;
@@ -21,7 +20,6 @@ public class Solution {
         j = next[j];
       }
     }
-
     int index = n - 1;
     while (true) {
       int from = 0, to = index;
@@ -38,7 +36,6 @@ public class Solution {
           index = to + next[from - 1];
       }
     }
-
     return new StringBuilder(s.substring(index + 1)).reverse().toString() + s;
   }
 }
