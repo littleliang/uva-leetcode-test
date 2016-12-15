@@ -28,12 +28,19 @@ public class Solution {
   }
 }
 
-/*
- * 回溯 public class Solution { public ListNode reverseList(ListNode head) { if(head==null) return
- * null; if(head.next==null) return head;
- * 
- * ListNode p = head.next; ListNode n = reverseList(p);
- * 
- * head.next = null; p.next = head; return n; } }
- * 
- */
+/*回溯
+public class Solution {
+  public ListNode reverseList(ListNode head) {
+    if (head == null)
+      return null;
+    if (head.next == null)
+      return head;
+    ListNode p = head.next;
+    ListNode n = reverseList(p);
+    head.next = null;
+    p.next = head;
+    return n;
+  }
+}
+*/
+
