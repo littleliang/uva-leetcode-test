@@ -21,11 +21,9 @@ class MyStack {
       queue2 = queue1;
       queue1 = tmp;
     }
-
     while (queue1.size() > 1) {
       queue2.add(queue1.remove(0));
     }
-
     queue1.clear();
   }
 
@@ -35,12 +33,10 @@ class MyStack {
       queue2 = queue1;
       queue1 = tmp;
     }
-
     while (queue1.size() > 1) {
       queue2.add(queue1.remove(0));
     }
     queue2.add(queue1.get(0));
-
     return queue1.remove(0);
   }
 
