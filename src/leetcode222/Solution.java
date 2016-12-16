@@ -15,10 +15,8 @@ public class Solution {
   public int countNodes(TreeNode root) {
     if (root == null)
       return 0;
-
     int l = getLeft(root) + 1;
     int r = getRight(root) + 1;
-
     if (l == r) {
       return (2 << (l - 1)) - 1;
     } else {
