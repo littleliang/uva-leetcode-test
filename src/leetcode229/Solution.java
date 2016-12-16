@@ -12,20 +12,17 @@ public class Solution {
       res.add(nums[0]);
       return res;
     }
-
     int m1 = nums[0];
     int m2 = 0;
-
     int c1 = 1;
     int c2 = 0;
-
     for (int i = 1; i < nums.length; i++) {
       int x = nums[i];
-      if (x == m1)
+      if (x == m1) {
         ++c1;
-      else if (x == m2)
+      } else if (x == m2) {
         ++c2;
-      else if (c1 == 0) {
+      } else if (c1 == 0) {
         m1 = x;
         c1 = 1;
       } else if (c2 == 0) {
