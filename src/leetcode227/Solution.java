@@ -7,9 +7,7 @@ public class Solution {
   public int calculate(String s) {
     if (s == null || s.length() == 0)
       return 0;
-
     LinkedList<Integer> list = new LinkedList<Integer>();
-
     for (int i = 0; i < s.length(); i++) {
       char c = s.charAt(i);
       if (Character.isDigit(c)) {
@@ -51,13 +49,10 @@ public class Solution {
         }
       }
     }
-
     if (list.isEmpty())
       return 0;
     Collections.reverse(list);
-
     int res = list.poll();
-
     while (!list.isEmpty()) {
       int op = list.poll();
       int opr = list.poll();
