@@ -1,8 +1,5 @@
 package leetcode321;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class Solution {
   public int[] maxNumber(int[] nums1, int[] nums2, int k) {
     int n = nums1.length;
