@@ -11,11 +11,10 @@ public class Solution {
     List<State> states = new LinkedList<State>();
     List<State> nextStates = new LinkedList<State>();
     states.add(new State(0, 0));
-
     boolean[][] stateSet = new boolean[nums1.length + 1][nums2.length + 1];
     stateSet[0][0] = true;
     for (int i = 0; i < k; i++) {
-      int max = -1;// max digit
+      int max = -1;
       for (State state : states) {
         stateSet[state.x][state.y] = false;
         int remainingDigits = k - i;
@@ -31,7 +30,6 @@ public class Solution {
         }
       }
       maxNumber[i] = max;
-
       while (!states.isEmpty()) {
         State state = states.remove(states.size() - 1);
         int remainingDigits = k - i;
@@ -56,7 +54,6 @@ public class Solution {
       states = nextStates;
       nextStates = temp;
     }
-
     return maxNumber;
   }
 
@@ -79,7 +76,6 @@ public class Solution {
       result = index;
       index = closest[index];
     }
-
     return result;
   }
 
@@ -89,7 +85,6 @@ public class Solution {
       return closest;
     }
     closest[A.length - 1] = -1;
-
     for (int i = A.length - 2; i >= 0; i--) {
       int j = i + 1;
       while (j != -1 && A[i] >= A[j]) {
