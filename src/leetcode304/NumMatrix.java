@@ -4,7 +4,6 @@ public class NumMatrix {
   int[][] sumMatrix;
   int row;
   int col;
-
   boolean noVal = false;
 
   public NumMatrix(int[][] matrix) {
@@ -19,12 +18,10 @@ public class NumMatrix {
       return;
     }
     sumMatrix = new int[row + 1][col + 1];
-
     for (int i = 0; i < row + 1; i++)
       sumMatrix[i][0] = 0;
     for (int i = 0; i < col + 1; i++)
       sumMatrix[0][i] = 0;
-
     for (int i = 1; i < row + 1; i++) {
       for (int j = 1; j < col + 1; j++) {
         sumMatrix[i][j] = sumMatrix[i - 1][j] + sumMatrix[i][j - 1] - sumMatrix[i - 1][j - 1]
