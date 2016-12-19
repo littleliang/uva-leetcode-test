@@ -9,12 +9,10 @@ public class NumArray {
     length = nums.length;
     processed = new int[length + 1];
     this.nums = nums;
-
     for (int i = 1; i <= length; i++) {
       int sum = 0;
       int count = 1;
       int counter = lowBit(i);
-
       while (count <= counter) {
         sum += nums[i - count];
         count++;
@@ -26,7 +24,6 @@ public class NumArray {
   void update(int i, int val) {
     int gap = val - nums[i];
     nums[i] = val;
-
     int index = i + 1;
     while (index <= length) {
       processed[index] += gap;
