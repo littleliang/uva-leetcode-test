@@ -5,93 +5,41 @@ import java.util.List;
 
 public class Solution {
   public int[] maxNumber(int[] nums1, int[] nums2, int k) {
-    int[] maxNumber = new int[k];
-    int[] leftClosest = getClosest(nums1);
-    int[] rightClosest = getClosest(nums2);
-    List<State> states = new LinkedList<State>();
-    List<State> nextStates = new LinkedList<State>();
-    states.add(new State(0, 0));
-    boolean[][] stateSet = new boolean[nums1.length + 1][nums2.length + 1];
-    stateSet[0][0] = true;
-    for (int i = 0; i < k; i++) {
-      int max = -1;
-      for (State state : states) {
-        stateSet[state.x][state.y] = false;
-        int remainingDigits = k - i;
-        int nextLeft =
-            getNextIndex(leftClosest, state.x, remainingDigits - (nums2.length - state.y));
-        int nextRight =
-            getNextIndex(rightClosest, state.y, remainingDigits - (nums1.length - state.x));
-        if (nextLeft != -1) {
-          max = Math.max(max, nums1[nextLeft]);
-        }
-        if (nextRight != -1) {
-          max = Math.max(max, nums2[nextRight]);
-        }
-      }
-      maxNumber[i] = max;
-      while (!states.isEmpty()) {
-        State state = states.remove(states.size() - 1);
-        int remainingDigits = k - i;
-        int nextLeft =
-            getNextIndex(leftClosest, state.x, remainingDigits - (nums2.length - state.y));
-        int nextRight =
-            getNextIndex(rightClosest, state.y, remainingDigits - (nums1.length - state.x));
-        if (nextLeft != -1) {
-          if (nums1[nextLeft] == max && stateSet[nextLeft + 1][state.y] == false) {
-            stateSet[nextLeft + 1][state.y] = true;
-            nextStates.add(new State(nextLeft + 1, state.y));
-          }
-        }
-        if (nextRight != -1) {
-          if (nums2[nextRight] == max && stateSet[state.x][nextRight + 1] == false) {
-            stateSet[state.x][nextRight + 1] = true;
-            nextStates.add(new State(state.x, nextRight + 1));
-          }
-        }
-      }
-      List<State> temp = states;
-      states = nextStates;
-      nextStates = temp;
+    int n = nums1.length;
+    int m = nums2.length;
+    int[] ans = new int[k];
+    for (int i = Math.max(0, k - m); i <= k && i <= n; ++i) {
+      int[] candidate = merge(maxArray(nums1, i), maxArray(nums2, k - i), k);
+      if (greater(candidate, 0, ans, 0))
+        ans = candidate;
     }
-    return maxNumber;
+    return ans;
   }
 
-  private class State {
-    int x, y;
-
-    public State(int x, int y) {
-      this.x = x;
-      this.y = y;
-    }
+  private int[] merge(int[] nums1, int[] nums2, int k) {
+    int[] ans = new int[k];
+    for (int i = 0, j = 0, r = 0; r < k; ++r)
+      ans[r] = greater(nums1, i, nums2, j) ? nums1[i++] : nums2[j++];
+    return ans;
   }
 
-  private int getNextIndex(int[] closest, int start, int needed) {
-    int result = -1;
-    if (start == closest.length) {
-      return -1;
+  public boolean greater(int[] nums1, int i, int[] nums2, int j) {
+    while (i < nums1.length && j < nums2.length && nums1[i] == nums2[j]) {
+      i++;
+      j++;
     }
-    int index = start;
-    while (index != -1 && closest.length - index >= needed) {
-      result = index;
-      index = closest[index];
-    }
-    return result;
+    return j == nums2.length || (i < nums1.length && nums1[i] > nums2[j]);
   }
 
-  private int[] getClosest(int[] A) {
-    int[] closest = new int[A.length];
-    if (A.length == 0) {
-      return closest;
+  public int[] maxArray(int[] nums, int k) {
+    int n = nums.length;
+    int[] ans = new int[k];
+    for (int i = 0, j = 0; i < n; ++i) {
+      while (n - i + j > k && j > 0 && ans[j - 1] < nums[i])
+        j--;
+      if (j < k)
+        ans[j++] = nums[i];
     }
-    closest[A.length - 1] = -1;
-    for (int i = A.length - 2; i >= 0; i--) {
-      int j = i + 1;
-      while (j != -1 && A[i] >= A[j]) {
-        j = closest[j];
-      }
-      closest[i] = j;
-    }
-    return closest;
+    return ans;
   }
 }
