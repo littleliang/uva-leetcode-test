@@ -22,7 +22,6 @@ public class Solution {
       graph.get(edge[0]).add(edge[1]);
       graph.get(edge[1]).add(edge[0]);
     }
-
     for (int i = 0; i < n; i++) {
       if (graph.get(i).size() == 1)
         leaf.add(i);
