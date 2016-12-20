@@ -54,7 +54,7 @@ public class Twitter {
 
   public void follow(int followerId, int followeeId) {
     Set<Integer> focusSet;
-    if (!userManagement.containsKey(followeeId)) {// 必须包含被关注者
+    if (!userManagement.containsKey(followeeId)) {
       focusSet = new HashSet<>();
       focusSet.add(followeeId);
       userManagement.put(followeeId, focusSet);
