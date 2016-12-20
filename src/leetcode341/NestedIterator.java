@@ -5,61 +5,40 @@ import java.util.List;
 import java.util.Stack;
 
 interface NestedInteger {
-	public boolean isInteger();
+  public boolean isInteger();
 
-	public Integer getInteger();
+  public Integer getInteger();
 
-	public List<NestedInteger> getList();
+  public List<NestedInteger> getList();
 }
+
 
 public class NestedIterator implements Iterator<Integer> {
+  Stack<NestedInteger> stack = new Stack<>();
 
-	private Stack<Cursor> stack = new Stack<>();
+  public NestedIterator(List<NestedInteger> nestedList) {
+    for (int i = nestedList.size() - 1; i >= 0; i--) {
+      stack.push(nestedList.get(i));
+    }
+  }
 
-	public NestedIterator(List<NestedInteger> nestedList) {
-		if (nestedList != null)
-			stack.push(new Cursor(nestedList));
-	}
+  @Override
+  public Integer next() {
+    return stack.pop().getInteger();
+  }
 
-	@Override
-	public Integer next() {
-		while (!stack.isEmpty()) {
-			Cursor cursor = stack.peek();
-			if (cursor.i < cursor.list.size()) {
-				NestedInteger nested = cursor.list.get(cursor.i++);
-				if (nested.isInteger())
-					return nested.getInteger();
-				stack.push(new Cursor(nested.getList()));
-			} else {
-				stack.pop();
-			}
-		}
-		return null;
-	}
-
-	@Override
-	public boolean hasNext() {
-		while (!stack.isEmpty()) {
-			Cursor cursor = stack.peek();
-			if (cursor.i < cursor.list.size()) {
-				NestedInteger nested = cursor.list.get(cursor.i);
-				if (nested.isInteger())
-					return true;
-				cursor.i++;
-				stack.push(new Cursor(nested.getList()));
-			} else {
-				stack.pop();
-			}
-		}
-		return false;
-	}
-}
-
-class Cursor {
-	List<NestedInteger> list;
-	int i;
-
-	Cursor(List<NestedInteger> list) {
-		this.list = list;
-	}
+  @Override
+  public boolean hasNext() {
+    while (!stack.isEmpty()) {
+      NestedInteger curr = stack.peek();
+      if (curr.isInteger()) {
+        return true;
+      }
+      stack.pop();
+      for (int i = curr.getList().size() - 1; i >= 0; i--) {
+        stack.push(curr.getList().get(i));
+      }
+    }
+    return false;
+  }
 }
