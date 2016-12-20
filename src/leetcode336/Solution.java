@@ -7,7 +7,7 @@ public class Solution {
   class TrieNode {
     TrieNode[] children;
     ArrayList<Integer> ids;
-    int index; 
+    int index;
 
     public TrieNode() {
       this.children = new TrieNode[26];
@@ -22,18 +22,16 @@ public class Solution {
     List<List<Integer>> list = new ArrayList<List<Integer>>();
     if (words.length < 2)
       return list;
-    List<Integer> empty = new ArrayList<Integer>(); 
+    List<Integer> empty = new ArrayList<Integer>();
     root = new TrieNode();
-
-    for (int i = 0; i < words.length; i++) { 
+    for (int i = 0; i < words.length; i++) {
       if (words[i].length() == 0) {
         empty.add(i);
         continue;
       }
       insert(words[i], i);
     }
-
-    for (int i = 0; i < words.length; i++) { 
+    for (int i = 0; i < words.length; i++) {
       search(words[i], list, i, empty);
     }
     return list;
@@ -42,21 +40,19 @@ public class Solution {
   private void search(String word, List<List<Integer>> list, int idx, List<Integer> empty) {
     char[] wd = word.toCharArray();
     TrieNode cur = root;
-
-    for (int i = wd.length - 1; i >= 0; i--) { 
+    for (int i = wd.length - 1; i >= 0; i--) {
       int pt = wd[i] - 'a';
-      if (cur.index != -1 && isPalin(wd, 0, i)) { 
+      if (cur.index != -1 && isPalin(wd, 0, i)) {
         List<Integer> li = new ArrayList<Integer>();
         li.add(cur.index);
         li.add(idx);
         list.add(li);
       }
       if (cur.children[pt] == null)
-        return; 
+        return;
       cur = cur.children[pt];
     }
-
-    if (cur.ids.size() != 0) { 
+    if (cur.ids.size() != 0) {
       for (Integer in : cur.ids) {
         if (in != idx) {
           List<Integer> li = new ArrayList<Integer>();
@@ -79,10 +75,9 @@ public class Solution {
     }
   }
 
-  private void insert(String word, int idx) { 
+  private void insert(String word, int idx) {
     char[] wd = word.toCharArray();
     TrieNode cur = root;
-
     for (int i = 0; i < wd.length; i++) {
       int pt = wd[i] - 'a';
       if (cur.children[pt] == null) {
