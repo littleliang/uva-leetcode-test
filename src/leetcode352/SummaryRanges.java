@@ -49,4 +49,3 @@ public class SummaryRanges {
     return new ArrayList<>(tree.values());
   }
 }
-
