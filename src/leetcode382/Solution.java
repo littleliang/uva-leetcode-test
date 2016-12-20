@@ -17,7 +17,6 @@ public class Solution {
     this.head = head;
   }
 
-
   public int getRandom() {
     ListNode node = head;
     int res = head.val;
