@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Solution {
-
   public List<String> findItinerary(String[][] tickets) {
     Map<String, List<String>> itineraryMap = new HashMap<>();
     for (String[] ticket : tickets) {
