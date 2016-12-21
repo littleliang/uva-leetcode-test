@@ -33,7 +33,6 @@ public class Solution {
     if (rectangles.length <= 1) {
       return true;
     }
-
     int sum = 0;
     int minX = Integer.MAX_VALUE;
     int minY = Integer.MAX_VALUE;
@@ -46,13 +45,10 @@ public class Solution {
       Point p3 = new Point(rect[0], rect[3], 3);
       Point p4 = new Point(rect[2], rect[1], 4);
       sum += (rect[2] - rect[0]) * (rect[3] - rect[1]);
-
       minX = Math.min(minX, rect[0]);
       minY = Math.min(minY, rect[1]);
-
       maxX = Math.max(maxX, rect[2]);
       maxY = Math.max(maxY, rect[3]);
-
       Point[] points = {p1, p2, p3, p4};
       for (Point p : points) {
         if (hm.containsKey(p) && hm.get(p) != p.index) {
