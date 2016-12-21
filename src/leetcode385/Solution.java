@@ -4,13 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 class NestedInteger {
-  public NestedInteger() {
+  public NestedInteger() {}
 
-  }
-
-  public NestedInteger(int value) {
-
-  }
+  public NestedInteger(int value) {}
 
   public boolean isInteger() {
     return true;
@@ -20,13 +16,9 @@ class NestedInteger {
     return 0;
   }
 
-  public void setInteger(int value) {
+  public void setInteger(int value) {}
 
-  }
-
-  public void add(NestedInteger ni) {
-
-  }
+  public void add(NestedInteger ni) {}
 
   public List<NestedInteger> getList() {
     return new ArrayList<>();
